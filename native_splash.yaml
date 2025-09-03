@@ -1,0 +1,11 @@
+flutter_native_splash:
+  # Splash background color
+  color: "#A5D6A7"
+
+  # Splash image (must be a PNG, preferably 4x density)
+  image: assets/splash.png
+
+  # Android 12 specific settings
+  android_12:
+    color: "#A5D6A7"
+    image: assets/splash.png
