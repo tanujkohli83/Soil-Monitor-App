@@ -41,15 +41,15 @@ class ReadingProvider with ChangeNotifier {
   List<Reading> get readings => _readings;
   Reading? get latestReading => _readings.isNotEmpty ? _readings.last : null;
 
-  /// Generate reading (ONLY if Bluetooth is connected)
+  // Generate reading (ONLY if Bluetooth is connected)
   Future<void> generateReading(
       BluetoothProvider bluetoothProvider, BuildContext context) async {
     if (!bluetoothProvider.isConnected) {
-      // ❌ Show warning popup instead of generating fallback
+      // Show warning popup instead of generating fallback
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text("⚠️ Please connect a Bluetooth device first!"),
+            content: Text("Please connect a Bluetooth device first!"),
             backgroundColor: Colors.red,
           ),
         );
@@ -57,7 +57,7 @@ class ReadingProvider with ChangeNotifier {
       return;
     }
 
-    // ✅ Get mock structured reading from BluetoothProvider
+    // Get mock structured reading from BluetoothProvider
     Map<String, dynamic> data = await bluetoothProvider.fetchReading();
 
     final reading = Reading(
@@ -80,7 +80,7 @@ class ReadingProvider with ChangeNotifier {
             .add(reading.toMap());
       }
     } catch (e) {
-      debugPrint("❌ Error saving to Firestore: $e");
+      debugPrint("Error saving to Firestore: $e");
     }
 
     // Save to SharedPreferences
@@ -89,7 +89,7 @@ class ReadingProvider with ChangeNotifier {
     await prefs.setStringList("readings", list);
   }
 
-  /// Load from Firebase (and cache locally)
+  // Load from Firebase (and cache locally)
   Future<void> fetchReadings() async {
     try {
       final user = _auth.currentUser;
@@ -114,11 +114,11 @@ class ReadingProvider with ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
-      debugPrint("❌ Error fetching from Firestore: $e");
+      debugPrint("Error fetching from Firestore: $e");
     }
   }
 
-  /// Load only from local cache (offline mode)
+  // Load only from local cache (offline mode)
   Future<void> loadFromLocal() async {
     final prefs = await SharedPreferences.getInstance();
     final list = prefs.getStringList("readings") ?? [];

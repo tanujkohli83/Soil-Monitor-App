@@ -23,10 +23,10 @@ class _ReportsScreenState extends State<ReportsScreen> {
   Future<void> _loadData() async {
     final provider = context.read<ReadingProvider>();
 
-    // 1️⃣ Load from SharedPreferences first (fast)
+    // Load from SharedPreferences first (fast)
     await provider.loadFromLocal();
 
-    // 2️⃣ Refresh from Firebase Firestore in background
+    // Refresh from Firebase Firestore in background
     await provider.fetchReadings();
 
     if (mounted) {

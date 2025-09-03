@@ -146,10 +146,10 @@ class HomeScreen extends StatelessWidget {
                         ),
                       );
                     }
-                    return; // ❌ stop here if BT is off
+                    return;
                   }
 
-                  // ✅ If Bluetooth is ON → open devices dialog
+                  // If Bluetooth is ON → open devices dialog
                   _showBluetoothDevicesDialog(context);
                 },
                 style: TextButton.styleFrom(
@@ -187,7 +187,7 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              // 🔹 Display latest reading
+              // Display latest reading
               if (readingsProvider.latestReading != null)
                 Card(
                   margin: const EdgeInsets.all(16),
@@ -205,15 +205,15 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          "🌡️ Temperature: ${readingsProvider.latestReading!.temperature.toStringAsFixed(1)} °C",
+                          "Temperature: ${readingsProvider.latestReading!.temperature.toStringAsFixed(1)} °C",
                           style: const TextStyle(fontSize: 18),
                         ),
                         Text(
-                          "💧 Moisture: ${readingsProvider.latestReading!.moisture.toStringAsFixed(1)} %",
+                          "Moisture: ${readingsProvider.latestReading!.moisture.toStringAsFixed(1)} %",
                           style: const TextStyle(fontSize: 18),
                         ),
                         Text(
-                          "🕒 ${readingsProvider.latestReading!.timestamp}",
+                          "${readingsProvider.latestReading!.timestamp}",
                           style: const TextStyle(
                               fontSize: 14, color: Colors.grey),
                         ),
@@ -224,7 +224,7 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              // 🔹 Reports Button
+              // Reports Button
               ElevatedButton.icon(
                 icon: const Icon(Icons.analytics),
                 label: const Text("Reports"),

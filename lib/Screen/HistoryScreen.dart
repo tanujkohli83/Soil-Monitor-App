@@ -23,10 +23,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Future<void> _loadData() async {
     final provider = context.read<ReadingProvider>();
 
-    // 1️⃣ Load from local cache first
+    // Load from local cache first
     await provider.loadFromLocal();
 
-    // 2️⃣ Refresh from Firestore in background
+    // Refresh from Firestore in background
     await provider.fetchReadings();
 
     if (mounted) {

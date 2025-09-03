@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       if (mounted) {
-        // ✅ Fetch readings from Firestore & cache in SharedPreferences
+        // Fetch readings from Firestore & cache in SharedPreferences
         await context.read<ReadingProvider>().fetchReadings();
 
         Navigator.pushReplacement(
@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   _loading
                       ? const CircularProgressIndicator()
                       : ElevatedButton(
-                          onPressed: _login, // Just call _login() here
+                          onPressed: _login,
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(

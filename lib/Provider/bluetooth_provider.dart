@@ -6,18 +6,18 @@ class BluetoothProvider with ChangeNotifier {
 
   String? connectedDeviceName;
   String? connectedDeviceId;
-  String? connectedType; // Only BLE since that's what your manager supports
+  String? connectedType;
   bool get isConnected => connectedDeviceName != null;
 
-  /// 🔹 Scan BLE devices (your manager only supports BLE)
+  // Scan BLE devices (your manager only supports BLE)
   Future<List<Map<String, dynamic>>> scanDevices() async {
     final devices = <Map<String, dynamic>>[];
 
     // Scan for BLE devices using your actual method name
-    final bleStream = _manager.scanForDevices(); // This is your actual method name
+    final bleStream = _manager.scanForDevices();
 
     await for (final results in bleStream) {
-      devices.clear(); // Clear previous results
+      devices.clear();
       for (var result in results) {
         devices.add({
           "name": result.device.platformName.isNotEmpty
@@ -29,7 +29,7 @@ class BluetoothProvider with ChangeNotifier {
           "rssi": result.rssi,
         });
       }
-      break; // Take first batch to avoid infinite loop
+      break;
     }
 
     return devices;
@@ -55,10 +55,10 @@ class BluetoothProvider with ChangeNotifier {
             ),
           );
         }
-        return; // Don’t try to connect
+        return;
       }
 
-      // ✅ If Bluetooth is ON → proceed to connect
+      // If Bluetooth is ON
       await _manager.connectToDevice(dev["device"]);
 
       connectedDeviceName = dev["name"];

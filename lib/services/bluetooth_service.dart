@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class BluetoothManager {
-  BluetoothDevice? connectedDevice; // ✅ This must be here
+  BluetoothDevice? connectedDevice;
 
   Stream<List<ScanResult>> scanForDevices() {
     FlutterBluePlus.startScan(timeout: const Duration(seconds: 4));
@@ -50,10 +50,10 @@ class BluetoothManager {
         }
       }
     } catch (e) {
-      print("❌ Error discovering services: $e");
+      print("Error discovering services: $e");
     }
 
-    // ✅ Generate random fallback values if null
+    // Generate random fallback values if null
     final random = Random();
     final double finalTemperature =
         temperature ?? (20 + random.nextDouble() * 15);
